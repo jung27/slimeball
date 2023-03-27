@@ -6,7 +6,7 @@ import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Bukkit
 import org.bukkit.Color
 import org.bukkit.Location
-import org.bukkit.entity.Player
+import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.TextDisplay
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
@@ -67,7 +67,7 @@ class SlimePool(private val loc: Location) {
 
         object : BukkitRunnable() {
             override fun run() {
-                loc.getNearbyEntitiesByType(Player::
+                loc.getNearbyEntitiesByType(LivingEntity::
                 class.java, 1.0).forEach{
                     it.addPotionEffect(PotionEffect(PotionEffectType.SLOW, 3, 2, false, false, false))
                 }
