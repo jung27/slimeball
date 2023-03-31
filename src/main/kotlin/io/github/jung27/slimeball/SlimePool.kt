@@ -69,7 +69,7 @@ class SlimePool(private val loc: Location) {
             override fun run() {
                 loc.getNearbyEntitiesByType(LivingEntity::
                 class.java, 1.0).forEach{
-                    it.addPotionEffect(PotionEffect(PotionEffectType.SLOW, 3, 2, false, false, false))
+                    it.addPotionEffect(PotionEffect(PotionEffectType.SLOW, 3, 4, false, false, false))
                 }
                 age++
                 if(age >= 60)
