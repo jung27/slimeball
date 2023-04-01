@@ -39,9 +39,13 @@ class EventListener : Listener {
     fun onDispense(event: BlockDispenseEvent){
         if(event.item.type == Material.SLIME_BALL){
             event.isCancelled = true
-            val block = event.block.blockData
-            if(block is Dispenser){
-                shootSlimeball(block, event.block.location)
+            val block = event.block
+            if(block is org.bukkit.block.Dispenser){
+                block.inventory.remove(event.item)
+            }
+            val blockData = block.blockData
+            if(blockData is Dispenser){
+                shootSlimeball(blockData, event.block.location)
             }
         }
     }
