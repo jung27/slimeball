@@ -8,7 +8,7 @@ kotlin{
 }
 
 group = "io.github.jung27"
-version = "1.0.1"
+version = "1.0.2"
 
 project.extra.set("packageName", name.replace("-", ""))
 project.extra.set("pluginName", name.split('-').joinToString("") { it.capitalize() })
