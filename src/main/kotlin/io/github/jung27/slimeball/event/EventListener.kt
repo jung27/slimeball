@@ -1,6 +1,8 @@
 package io.github.jung27.slimeball.event
 
 import io.github.jung27.slimeball.SlimePool
+import io.github.jung27.slimeball.plugin.SlimeballPlugin
+import org.bukkit.Bukkit
 import org.bukkit.GameMode
 import org.bukkit.Location
 import org.bukkit.Material
@@ -40,13 +42,16 @@ class EventListener : Listener {
         if(event.item.type == Material.SLIME_BALL){
             event.isCancelled = true
             val block = event.block
-            if(block is org.bukkit.block.Dispenser){
-                block.inventory.remove(event.item)
-            }
+            val state = block.state
             val blockData = block.blockData
             if(blockData is Dispenser){
                 shootSlimeball(blockData, event.block.location)
             }
+            Bukkit.getScheduler().runTaskLater(SlimeballPlugin.instance, Runnable {
+                if(state is org.bukkit.block.Dispenser){
+                    state.inventory.removeItem(event.item)
+                }
+            }, 1)
         }
     }
 
